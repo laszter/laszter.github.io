@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="th">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Replace</title>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,8 +18,8 @@
         }
     </style>
     <h2>Replace model class to class struce C#</h2>
-    <textarea id="source-text"></textarea>
-    <textarea id="output-text"></textarea>
+    <textarea placeholder="" title="source" id="source-text"></textarea>
+    <textarea placeholder="" title="output" id="output-text"></textarea>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const sourceText = document.getElementById('source-text');
@@ -29,7 +30,7 @@
                 source = source.replace(/string/g, 'string?');
                 source = source.replace(/ _/g, ' ');
                 source = source.replace(/;/g, ' { get; set; }');
-                outputText.value = output;
+                outputText.value = source;
             });
         });
     </script>

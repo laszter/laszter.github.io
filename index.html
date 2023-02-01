@@ -15,6 +15,7 @@
             height: 600px;
             box-sizing: border-box;
             float: left;
+            resize: none;
         }
     </style>
     <h2>Replace model class to class struce C#</h2>
@@ -31,16 +32,19 @@
                 source = source.replace(/ _/gi, ' ');
                 source = source.replace(/;/gi, ' { get; set; }');
                 outputText.value = source;
+                
+                const lines = this.value.split('\n').length;
+                this.rows = lines;
             });
 
             const textareas = document.querySelectorAll("textarea");
-  
+
             for (let i = 0; i < textareas.length; i++) {
-                textareas[i].addEventListener("scroll", function() {
-                for (let j = 0; j < textareas.length; j++) {
-                    textareas[j].scrollTop = this.scrollTop;
-                    textareas[j].scrollLeft = this.scrollLeft;
-                }
+                textareas[i].addEventListener("scroll", function () {
+                    for (let j = 0; j < textareas.length; j++) {
+                        textareas[j].scrollTop = this.scrollTop;
+                        textareas[j].scrollLeft = this.scrollLeft;
+                    }
                 });
             }
         });

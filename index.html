@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Replace</title>
+    <title>Earth Box</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -18,7 +18,11 @@
             resize: none;
         }
     </style>
-    <h2 class="title-header">Replace model class to class struce C#</h2>
+    <h2 class="title-header">Replace private class to public class model</h2>
+    <div class="desc-header">
+        Replace&nbsp;&nbsp;<div class="code-box">private string _name;</div>&nbsp;&nbsp;to&nbsp;&nbsp;<div
+            class="code-box">public string? Name { get; set; }</div>
+    </div>
     <div class="container">
         <textarea placeholder="" title="source" id="source-text" class="input-text"></textarea>
         <textarea placeholder="" title="output" id="output-text" class="input-text"></textarea>
@@ -34,7 +38,7 @@
                 source = source.replace(/ _/gi, ' ');
                 source = source.replace(/;/gi, ' { get; set; }');
                 outputText.value = source;
-                
+
                 const lines = this.value.split('\n').length;
                 this.rows = lines;
             });

@@ -10,6 +10,7 @@ body {
 
 .input-text {
     font-family: 'Roboto', sans-serif;
+    font-size: 16px;
     line-height: 1.5;
     background-color: #fff;
     color: #000;
@@ -25,6 +26,17 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: rgb(53, 53, 53);
+}
+
+.title-header{
+    text-align: center;
+}
+
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* padding: 0 15px; */
 }
 
 @media screen and (prefers-color-scheme: dark) {

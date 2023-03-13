@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Earth Box - JSON Format & Minify</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <style>
+        .input-text {
+            width: 50%;
+            height: 600px;
+            box-sizing: border-box;
+            float: left;
+            resize: none;
+        }
+    </style>
+    <h2 class="title-header">JSON Format & Minify</h2>
+    <div class="sub-menu">
+
+    </div>
+    <div class="container">
+        <textarea placeholder="" title="source" id="source-text" class="input-text" spellcheck="false"></textarea>
+        <textarea placeholder="" title="output" id="output-text" class="input-text" spellcheck="false"></textarea>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sourceText = document.getElementById('source-text');
+            const outputText = document.getElementById('output-text');
+            sourceText.addEventListener('input', function () {
+                let source = sourceText.value;
+                outputText.value = formatJSON(source, null, true);
+
+                const lines = this.value.split('\n').length;
+                this.rows = lines;
+            });
+        });
+
+        function formatJSON(jsonStr, spaces = 2, minify = false, sortKeys = false) {
+            try {
+                const jsonObj = JSON.parse(jsonStr);
+                const indent = minify ? 0 : spaces;
+                const replacer = sortKeys ? (key, value) => {
+                    if (Array.isArray(value)) {
+                        return value.sort();
+                    } else if (typeof value === 'object' && value !== null) {
+                        return Object.keys(value).sort().reduce((acc, key) => {
+                            acc[key] = value[key];
+                            return acc;
+                        }, {});
+                    }
+                    return value;
+                } : null;
+                return JSON.stringify(jsonObj, replacer, indent);
+            } catch (error) {
+                console.error(error);
+                return jsonStr;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

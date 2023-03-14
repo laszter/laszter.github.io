@@ -19,8 +19,26 @@
         }
     </style>
     <h2 class="title-header">JSON Format & Minify</h2>
-    <div class="sub-menu">
-
+    <div class="option-box">
+        <div class="option-item">
+            <label class="option-item-title">Indent</label>
+            <select title="Indent" id="indent">
+                <option value="2" selected>2</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="option-item">
+            <span>
+                <label class="option-item-title">Minify
+                    <input type="checkbox" id="minify" name="minify" value="minify">
+                </label>
+            </span>
+            <span>
+                <label class="option-item-title">Sort Keys
+                    <input type="checkbox" id="sortKeys" name="sortKeys" value="sortKeys">
+                </label>
+            </span>
+        </div>
     </div>
     <div class="container">
         <textarea placeholder="" title="source" id="source-text" class="input-text" spellcheck="false"></textarea>
@@ -31,13 +49,34 @@
             const sourceText = document.getElementById('source-text');
             const outputText = document.getElementById('output-text');
             sourceText.addEventListener('input', function () {
-                let source = sourceText.value;
-                outputText.value = formatJSON(source, null, true);
+                formatJSONSource();
 
                 const lines = this.value.split('\n').length;
                 this.rows = lines;
             });
+
+            const minify = document.getElementById('minify');
+            const sortKeys = document.getElementById('sortKeys');
+            const indent = document.getElementById('indent');
+            minify.addEventListener('change', function () {
+                formatJSONSource();
+            });
+            sortKeys.addEventListener('change', function () {
+                formatJSONSource();
+            });
+            indent.addEventListener('change', function () {
+                formatJSONSource();
+            });
         });
+
+        function formatJSONSource() {
+            const source = document.getElementById('source-text').value;
+            const minify = document.getElementById('minify').checked;
+            const sortKeys = document.getElementById('sortKeys').checked;
+            const indent = parseInt(document.getElementById('indent').value);
+
+            document.getElementById('output-text').value = formatJSON(source, indent, minify, sortKeys);
+        }
 
         function formatJSON(jsonStr, spaces = 2, minify = false, sortKeys = false) {
             try {
@@ -60,7 +99,6 @@
                 return jsonStr;
             }
         }
-
 
     </script>
 </body>

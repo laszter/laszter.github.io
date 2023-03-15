@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Earth Box - Class Member Modifier</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <style>
+        .input-text {
+            width: 50%;
+            height: 600px;
+            box-sizing: border-box;
+            float: left;
+            resize: none;
+        }
+    </style>
+    <h2 class="title-header">Property Converter</h2>
+    <div class="desc-header">
+        Replace&nbsp;&nbsp;<div class="code-box">private string _name;</div>&nbsp;&nbsp;to&nbsp;&nbsp;<div
+            class="code-box">public string? name { get; set; }</div>
+    </div>
+    <div class="container">
+        <textarea placeholder="" title="source" id="source-text" class="input-text" spellcheck="false"></textarea>
+        <textarea placeholder="" title="output" id="output-text" class="input-text" spellcheck="false"></textarea>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sourceText = document.getElementById('source-text');
+            const outputText = document.getElementById('output-text');
+            sourceText.addEventListener('input', function () {
+                let source = sourceText.value;
+                source = source.replace(/private/gi, 'public');
+                source = source.replace(/string/gi, 'string?');
+                source = source.replace(/ _/gi, ' ');
+                source = source.replace(/;/gi, ' { get; set; }');
+                outputText.value = source;
+
+                const lines = this.value.split('\n').length;
+                this.rows = lines;
+            });
+
+            const textareas = document.querySelectorAll("textarea");
+
+            for (let i = 0; i < textareas.length; i++) {
+                textareas[i].addEventListener("scroll", function () {
+                    for (let j = 0; j < textareas.length; j++) {
+                        textareas[j].scrollTop = this.scrollTop;
+                        textareas[j].scrollLeft = this.scrollLeft;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

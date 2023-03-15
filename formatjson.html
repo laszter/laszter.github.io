@@ -18,6 +18,73 @@
             resize: none;
         }
     </style>
+    <style>
+        .option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 50px;
+            height: 30px;
+            background-color: #FFFFFF;
+            border: 1px solid #D4D4D4;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 16px;
+            color: #1A1A1A;
+            cursor: pointer;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 45px;
+            height: 25px;
+            margin: 0;
+            vertical-align: middle;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #D4D4D4;
+            border-radius: 25px;
+            transition: .2s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 21px;
+            width: 21px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .2s;
+        }
+
+        input:checked+.slider {
+            background-color: #8f8f8f;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+    </style>
     <h2 class="title-header">JSON Format & Minify</h2>
     <div class="option-box">
         <div class="option-item">
@@ -28,16 +95,16 @@
             </select>
         </div>
         <div class="option-item">
-            <span>
-                <label class="option-item-title">Minify
-                    <input type="checkbox" id="minify" name="minify" value="minify">
-                </label>
-            </span>
-            <span>
-                <label class="option-item-title">Sort Keys
-                    <input type="checkbox" id="sortKeys" name="sortKeys" value="sortKeys">
-                </label>
-            </span>
+            <label class="option-item-title">Minify</label>
+            <label class="switch">
+                <input type="checkbox" id="minify" name="minify" value="minify">
+                <div class="slider"></div>
+            </label>
+            <label class="option-item-title">Sort Keys</label>
+            <label class="switch">
+                <input type="checkbox" id="sortKeys" name="sortKeys" value="sortKeys">
+                <div class="slider"></div>
+            </label>
         </div>
     </div>
     <div class="container">

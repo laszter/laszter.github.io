@@ -4,55 +4,67 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Earth Box</title>
+    <title>Earth Box - Home</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 30%;
+            margin: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
-    <style>
-        .input-text {
-            width: 50%;
-            height: 600px;
-            box-sizing: border-box;
-            float: left;
-            resize: none;
-        }
-    </style>
-    <h2 class="title-header">Replace private class to public class model</h2>
-    <div class="desc-header">
-        Replace&nbsp;&nbsp;<div class="code-box">private string _name;</div>&nbsp;&nbsp;to&nbsp;&nbsp;<div
-            class="code-box">public string? name { get; set; }</div>
-    </div>
-    <div class="container">
-        <textarea placeholder="" title="source" id="source-text" class="input-text" spellcheck="false"></textarea>
-        <textarea placeholder="" title="output" id="output-text" class="input-text" spellcheck="false"></textarea>
-    </div>
+    <main>
+        <h1 class="title-header">Earth Box</h1>
+
+        <h2 class="title-header">Featured Tools</h2>
+        <div class="container">
+            <div class="card">
+                <a href="property_converter.html">
+                    <img src="https://via.placeholder.com/200x200?text=Property+Converter" alt="Property Converter">
+                    <h3>Property Converter</h3>
+                    <p>Convert private class members to public properties in C# code.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="formatjson.html">
+                    <img src="https://via.placeholder.com/200x200?text=JSON+Format+and+Minify" alt="Property Converter">
+                    <h3>JSON Format & Minify</h3>
+                    <p>Format JSON and Minify</p>
+                </a>
+            </div>
+            <!-- Add more tool cards here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Earth Box. All rights reserved.</p>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const sourceText = document.getElementById('source-text');
-            const outputText = document.getElementById('output-text');
-            sourceText.addEventListener('input', function () {
-                let source = sourceText.value;
-                source = source.replace(/private/gi, 'public');
-                source = source.replace(/string/gi, 'string?');
-                source = source.replace(/ _/gi, ' ');
-                source = source.replace(/;/gi, ' { get; set; }');
-                outputText.value = source;
 
-                const lines = this.value.split('\n').length;
-                this.rows = lines;
-            });
-
-            const textareas = document.querySelectorAll("textarea");
-
-            for (let i = 0; i < textareas.length; i++) {
-                textareas[i].addEventListener("scroll", function () {
-                    for (let j = 0; j < textareas.length; j++) {
-                        textareas[j].scrollTop = this.scrollTop;
-                        textareas[j].scrollLeft = this.scrollLeft;
-                    }
-                });
-            }
         });
     </script>
 </body>

@@ -79,6 +79,16 @@ textarea::-webkit-scrollbar-thumb {
     background-color: #5f5f5f;
 }
 
+footer {
+    text-align: center;
+    margin: 18px;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     body {
         background-color: #1f1f1f;
@@ -102,5 +112,9 @@ textarea::-webkit-scrollbar-thumb {
     .code-box {
         color: #fff;
         background-color: #3f3f3f;
+    }
+
+    a {
+        color: #fff;
     }
 }

@@ -73,6 +73,7 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 4px;
     padding: 12px 16px;
     width: 100%;
+    color: #fff;
 }
 
 .option-box .option-item:hover {

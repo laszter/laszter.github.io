@@ -93,6 +93,11 @@
                 <option value="2" selected>2</option>
                 <option value="4">4</option>
             </select>
+            <label class="option-item-title">Timestamp Escaspe</label>
+            <label class="switch">
+                <input type="checkbox" id="tsesp" name="tsesp" value="tsesp">
+                <div class="slider"></div>
+            </label>
         </div>
         <div class="option-item">
             <label class="option-item-title">Minify</label>
@@ -125,6 +130,7 @@
             const minify = document.getElementById('minify');
             const sortKeys = document.getElementById('sortKeys');
             const indent = document.getElementById('indent');
+            const tsesp = document.getElementById('tsesp');
             minify.addEventListener('change', function () {
                 formatJSONSource();
             });
@@ -134,6 +140,9 @@
             indent.addEventListener('change', function () {
                 formatJSONSource();
             });
+            tsesp.addEventListener('change', function () {
+                formatJSONSource();
+            });
         });
 
         function formatJSONSource() {
@@ -141,11 +150,12 @@
             const minify = document.getElementById('minify').checked;
             const sortKeys = document.getElementById('sortKeys').checked;
             const indent = parseInt(document.getElementById('indent').value);
+            const tsesp = document.getElementById('tsesp').checked;
 
-            document.getElementById('output-text').value = formatJSON(source, indent, minify, sortKeys);
+            document.getElementById('output-text').value = formatJSON(source, indent, minify, sortKeys, tsesp);
         }
 
-        function formatJSON(jsonStr, spaces = 2, minify = false, sortKeys = false) {
+        function formatJSON(jsonStr, spaces = 2, minify = false, sortKeys = false, tsesp = false) {
             try {
                 const jsonObj = JSON.parse(jsonStr);
                 const indent = minify ? 0 : spaces;
@@ -160,7 +170,11 @@
                     }
                     return value;
                 } : null;
-                return JSON.stringify(jsonObj, replacer, indent);
+                let result = JSON.stringify(jsonObj, replacer, indent);
+                if(tsesp) {
+                    result = result.replaceAll('/Date(', '\\/Date(').replaceAll(')/', ')\\/'); // escape date timestamp
+                }
+                return result;
             } catch (error) {
                 console.error(error);
                 return jsonStr;

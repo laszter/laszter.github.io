@@ -22,5 +22,10 @@
             title="🔓 Unlock PDF"
             description="Unlock password-protected PDF files"
         />
+        <Card
+            link="/error-stack-trace"
+            title="🔥 Error Stack Trace Beautifier"
+            description="Beautify and format error stack traces for better readability."
+        />
     </div>
 </main>

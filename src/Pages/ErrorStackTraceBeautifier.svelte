@@ -8,7 +8,7 @@
     const beautifyStackTrace = () => {
         if (!outputEl) return;
 
-        const lines = sourceText.split("\\r\\n");
+        const lines = sourceText.replaceAll("\\r\\n", "\\n").split("\\n");
 
         outputEl.innerHTML = lines
             .map((line) =>

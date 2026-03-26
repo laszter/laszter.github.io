@@ -27,5 +27,10 @@
             title="🔥 Error Stack Trace Beautifier"
             description="Beautify and format error stack traces for better readability."
         />
+        <Card
+            link="/text-diff-compare"
+            title="🧩 Text Diff Compare"
+            description="Compare two texts side by side with highlighted additions, removals, and edits."
+        />
     </div>
 </main>

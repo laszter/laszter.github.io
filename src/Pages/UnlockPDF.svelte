@@ -23,7 +23,7 @@
                 const newPdfBytes = await newPdfDoc.save();
 
                 // Convert new PDF bytes to Blob
-                const blob = new Blob([newPdfBytes], {
+                const blob = new Blob([new Uint8Array(newPdfBytes)], {
                     type: "application/pdf",
                 });
 
